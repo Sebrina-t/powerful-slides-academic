@@ -1,0 +1,7 @@
+interface:
+  display_name: "Powerful Academic Slides"
+  short_description: "Create interactive academic HTML presentations and PPTs"
+  default_prompt: "Use $powerful-slides-academic with my uploaded research materials and language requirement to build a three-theme interactive, annotatable HTML presentation before the confirmed PowerPoint."
+
+policy:
+  allow_implicit_invocation: false
