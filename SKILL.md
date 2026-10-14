@@ -27,7 +27,7 @@ Do not block on optional inputs that can be inferred safely from the request or 
 - Match the user's language, terminology, notation, and demonstrated writing habits. Learn visual style only from a deck or template the user identifies as a design reference; a source paper is not automatically a visual template.
 - Obey the requested output language. Do not silently change Chinese, English, or bilingual delivery. Keep facts, numbers, symbols, citation meaning, and claim strength identical across language versions.
 - Preserve the user's requested slide count exactly, including the cover. When time rather than slide count is supplied, size the deck to the speaking time and reserve time for the densest evidence.
-- Keep required evidence editable. Put citations on the relevant slide when the audience needs them and otherwise in speaker notes with enough detail to locate the source.
+- Keep required evidence editable. Keep source mappings, provenance, evidence classifications, and authoring/data declarations in internal records or speaker notes by default, not on audience-facing slides. Add visible citations only when explicitly requested, required by the venue, or needed to meet an attribution condition. Do not remove a required credit silently.
 - Do not create the final PPT before the user sends the standalone approval token `confirmed` after reviewing the HTML. Match case-insensitively after trimming whitespace; a sentence that merely contains the word is not approval.
 - When a script is requested, keep the PPT and script version-locked: every substantive slide has a corresponding script section, and every spoken factual claim appears in the same evidence ledger as the slides.
 
@@ -45,24 +45,34 @@ Do not block on optional inputs that can be inferred safely from the request or 
 
 ## Writing and visual decisions
 
+- Reasonable layout and high readability are hard acceptance requirements. Imagery, motion, and stylistic ambition must yield to readable text, useful image scale, clear hierarchy, balanced placement, and unclipped content. Do not accept poor alignment, accidental large empty regions, or tiny text as artistic choices.
+- Use natural presentation language. Do not append generic boxes or footers headed “数据来源”, “数据声明”, “生成说明”, or S/D/I/P labels to slides. Keep the evidence ledger internal. Express material result status in ordinary wording such as “仿真结果”, “初步观察”, or “预期趋势” when needed for truthful interpretation, without a separate disclaimer panel.
+
+- Choose alignment and visual mass deliberately: center compact compositions horizontally and vertically in the usable content area; use asymmetric layouts only when text and evidence balance them. Do not leave a small text block stranded in one corner or force every slide into the same grid. See the layout acceptance criteria in the visual-system reference.
+- Use relevant source figures, researched images, or image-generated conceptual illustrations when they help explain the subject. Consider topic-specific magazines, journals, professional publications, editorial photography, and archives as well as source-paper figures. Select imagery for the actual setting and argument; do not impose an image quota or force a magazine look. Record provenance and usage rights internally; generated imagery is illustrative, never experimental evidence. Enlarge or reorganize useful content before adding decoration to fill space.
+
 - Prefer direct academic Chinese or English over promotional language. Use the field's precise terms, but explain specialized terms that the audience may not know.
 - Write slide text for scanning. If a script is requested, write it for speaking: it should interpret the visual, explain reasoning, and bridge slides rather than read bullets aloud.
 - Use a claim title only when the slide evidence supports it; otherwise use a neutral topic title. Avoid slogan titles and artificial certainty.
 - Prefer one principal visual per slide. Choose diagrams for mechanisms, timelines for procedures, charts for quantitative comparisons, tables for exact values, and equations only when they are discussed.
 - Do not turn paragraphs into tiny bullets. Cut, sequence, or move detail to speaker notes before reducing body text.
 - Visually distinguish measured results, simulations, conceptual diagrams, and future work. A decorative image must never look like experimental evidence.
-- Preserve author-supplied figures unless modification is requested. If a figure is redrawn or simplified, disclose that it is adapted and retain the source.
+- Preserve author-supplied figures unless modification is requested. Record adaptations and source information internally or in notes; use visible credits only under the attribution rules above.
 
 ## Interactive presentation invariants
 
 - Treat each page as an independent interactive slide component with stable slide, element, reveal-step, interaction, and export-state identifiers.
 - Provide three restrained academic tone presets. The initially displayed preset counts as one of the three. Implement them with shared semantic CSS variables, expose an accessible theme selector, persist the choice locally, and record the approved theme in the review export and build record.
 - Preserve the existing slide index, annotations, direct edits when enabled, local persistence, review export, and versioning. Presenter mode hides editing and review chrome and shows only the slide, page number, and minimal animation controls.
+- Every meaningful HTML text run, including body copy, lists, captions, citations, and table cells, must be editable in explicit edit mode. In default annotation mode, clicking text, figures, or empty slide space opens a comment beside that location. Use the reusable [review runtime](references/review-runtime.md) and `assets/review-runtime/` instead of rebuilding title-only editing or a sidebar-only note box. Preserve existing review data when integrating it.
 - Default to complete, static content. Interactive capability does not require motion on every page. Choose animation only when it materially helps the audience understand a derivation, comparison, parameter sensitivity, or focused visual explanation. Ordinary content pages, agendas, summaries, and overview workflows appear together; a five-step workflow does not require five clicks. When a reveal is useful, group elements by meaningful explanation rather than animating every node, arrow, bullet, or title. Keep page transitions optional and restrained. See the animation decision rules in the engine reference.
+- Cover and contents/agenda pages are static complete compositions in HTML and PPT: no progressive reveal, staggered entrances, continuous decoration, or click-to-build. They have no reveal steps. Page navigation is independent of content animation.
+- Include an optional “汇报人：” field on the cover. Let the user enter or revise the name and remove the entire field; do not require a presenter name to begin. Persist the name and visibility and preserve both in exported HTML and the approved PPT. Keep input/delete controls in review chrome, not audience-facing slides.
 - Support sliders, discrete parameter selectors, progressive equations, image highlights and magnifiers, animated callout lines, signal-flow dots, light sweeps, signal ripples, arrow progression, before/after toggles, and dynamic SVG/Canvas/charts when relevant. Do not fabricate data for a demo. Synthetic example data must be labeled clearly.
 - Prefer native SVG, Canvas, and small local modules. If Chart.js or D3 is justified, vendor a pinned local copy; do not require CDN or network access at presentation time.
 - Respect `prefers-reduced-motion`, keyboard navigation, focus visibility, contrast, and a no-motion fallback. Interactions must remain understandable without hover.
 - Maintain a deterministic export state for every interactive component. The approved PPT must correspond to that state or to clearly numbered sequential reveal states.
+- Preserve approved reveal groups and click counts in native PPT animations; do not silently flatten them during export. Validate them in the intended desktop application's actual slideshow, not just XML inspection or static rendering. See [native animation acceptance](references/ppt-animation-acceptance.md).
 - Generate source modules under `slides/`, `js/`, `css/`, and `assets/`, while also producing a root `index.html` that opens locally without a server. Do not rely on `fetch()` of local slide fragments; bundle them into `index.html` or use another file-safe build strategy.
 
 ## Stopping conditions

@@ -26,6 +26,11 @@ Use this checklist after authoring and after every material revision.
 
 ## Slide and delivery audit
 
+- Inspect centered placement where appropriate, usable-area alignment, visual balance, main-figure scale, and unused grid columns. Explain intentionally sparse pages; fix accidental empty regions by improving the composition, not adding unrelated filler.
+- Verify image relevance and internal provenance. Use explanatory captions only when helpful; check required attribution conditions. Remove generic data-source/data-declaration panels and authoring labels from audience-facing slides. Preserve honest interpretation using natural result wording.
+- Check that covers and contents/agenda pages are complete and static in HTML and PPT, with no reveal steps, staggered entrances, or decorative looping motion.
+- Test full-text editing and click-to-annotate behavior with the reusable runtime acceptance tests. Title-only editing, silent clicks, sidebar-only notes, lost edits on reload/export, and a detached or offscreen comment editor are blocking review defects. Browser tests require observable interactions; source-code inspection does not substitute for them.
+
 - Before approval, verify that the HTML presentation supports annotations, direct text edits, local persistence, three tone presets, presenter mode, deterministic export states, and export without network access.
 - Confirm that HTML foreground elements pass overflow, bounds, and unintended-overlap checks; inspect intentionally overlapping background layers separately.
 - Treat **text content outside its text box** as a separate blocking defect. Check every text-bearing element for `scrollWidth > clientWidth`, `scrollHeight > clientHeight`, clipped descendant line boxes, CSS line-clamp loss, and text that becomes hidden after a theme, reveal step, parameter value, presenter-mode, or viewport change.
@@ -34,9 +39,10 @@ Use this checklist after authoring and after every material revision.
 - Exercise every reveal step, slider endpoint, discrete parameter choice, before/after toggle, image-focus state, animated arrow/signal path, theme, and presenter-mode transition. Confirm that controls update all dependent values from one state object and never produce stale labels, empty charts, NaN, or layout shifts.
 - Verify reduced-motion behavior and keyboard-only operation. No scientific meaning may depend exclusively on hover, continuous motion, or color.
 - Compare each interactive slide's reviewed state with its deterministic export state. Confirm that the PPT remains understandable without JavaScript and that any HTML-only behavior is represented by a static state, native animation, or sequential slides.
+- For approved native reveals, follow [native animation acceptance](ppt-animation-acceptance.md): verify every click group in an actual slideshow in the intended application. A valid package, existing timing nodes, or rendered slide does not prove playback.
 - Confirm the requested total slide count, order, aspect ratio, template, language, and output format.
 - Confirm that tables, charts, equations, and required diagrams remain editable when requested.
-- Keep the title slide minimal and remove authoring comments, placeholders, unsupported superlatives, and private validation notes.
+- Keep the title slide focused and visually balanced, retaining the optional presenter field when selected; remove authoring comments, unresolved placeholders, unsupported superlatives, and private validation notes. Do not confuse a focused cover with accidental large empty regions.
 - Read speaker notes and citations for stale slide numbers or claims after rearrangement.
 - After `confirmed`, compare the PPT against the approved HTML version for slide order, wording, figures, emphasis, selected theme, parameter states, reveal endpoints, and visual hierarchy. Document unavoidable differences instead of silently changing the design.
 

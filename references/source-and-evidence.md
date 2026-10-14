@@ -38,10 +38,10 @@ Status meanings:
 
 ## Citation placement
 
-- Cite the primary source nearest the claim. Prefer page, figure, table, section, DOI, or stable URL over a bare filename.
-- If a slide combines sources, show which source supports which element.
-- Keep citations on-slide when attribution is academically important or likely to be challenged. Otherwise place full citations in speaker notes and use a compact marker on-slide.
-- Cite adapted figures as adapted, and note any changed labels, normalization, cropping, or recomputation.
+- Link each claim to its primary source internally. Prefer page, figure, table, section, DOI, or stable URL over a bare filename.
+- If a slide combines sources, keep an element-to-source mapping in the evidence ledger or notes, not audience-facing source labels.
+- Default to citations in notes or internal records, without a mandatory on-slide marker. Use visible references only when requested, required by the venue, or necessary under an attribution condition. If an asset requires an unsuitable visible credit, select another asset rather than silently removing the credit.
+- Record adapted figures and changed labels, normalization, cropping, or recomputation internally or in notes. Do not add generic data-source or data-declaration panels. Preserve honest meaning through ordinary scientific wording when simulation, proposed work, or preliminary results could otherwise be mistaken for completed measurements.
 - Do not cite a review for a primary experimental result when the primary paper is available.
 
 ## Contradictions and missing evidence

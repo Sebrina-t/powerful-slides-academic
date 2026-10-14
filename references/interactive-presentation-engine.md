@@ -20,6 +20,7 @@ Keep state serializable as JSON. A theme change must not reset comments, reveal 
 Start with a complete static slide. Add a dynamic effect only when its explanatory benefit is clear. Do not enforce an animation quota or give every page, title, paragraph, node, or arrow an entrance effect merely because the engine supports it.
 
 - Show agendas, summaries, standard evidence pages, and overview workflows as complete compositions by default. A five-step research workflow normally appears together so the audience can see its relationships.
+- Covers and contents/agenda pages must be static and complete in HTML and PPT. Do not attach reveal steps, staggered entrances, looping decorative effects, or click-to-build to them. Allow normal page navigation without a content-animation sequence.
 - Use progressive reveal for a derivation that needs explanation, an image that benefits from focused annotation, or a comparison where changing states clarifies a difference. Parameter interaction is appropriate only when supported states show a meaningful dependency.
 - If a process genuinely needs temporal explanation, group related nodes and arrows into a few meaningful speaking steps. Do not equate the number of nodes with the number of clicks.
 - Keep optional page transitions subtle. A static page needs no reveal-step controls or empty animation progress counter. On a page with no reveal steps, next/previous advances pages directly.
@@ -112,7 +113,7 @@ The final PPT cannot depend on browser JavaScript. Before export:
 
 - freeze every interaction at the approved export state;
 - stop continuous motion and materialize its meaningful path or endpoint;
-- convert progressive explanations to native PPT animations when reliable, otherwise to sequential duplicate slides;
+- preserve approved progressive explanations as native PPT animations and validate actual slideshow playback using [native animation acceptance](ppt-animation-acceptance.md); use sequential duplicate slides only with user approval when they change the requested slide count, or agree on a static substitute explicitly;
 - reproduce charts, formulas, arrows, and diagrams as editable PowerPoint objects whenever practical;
 - use SVG or high-resolution images only where native reconstruction would reduce fidelity, and never flatten an entire slide merely for convenience;
 - record the theme, parameters, reveal endpoint, and any static substitutions in the build record.

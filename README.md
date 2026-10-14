@@ -7,9 +7,10 @@ Turn research papers, proposals, theses, experiment results, and notes into an e
 ## Features
 
 - **Evidence-grounded content:** distinguish source facts, derived results, inferences, and proposals; check assumptions and unsupported claims.
-- **HTML review first:** review slide content, make annotations, and export review feedback before producing the final PPT.
-- **Three academic themes:** restrained visual presets with local persistence and a presenter mode.
-- **Purposeful interaction:** use equation steps, parameter controls, and scientific visualizations where they help explain the research. Ordinary slides show complete content by default.
+- **HTML review first:** edit titles, body text, captions, and table cells; click text, images, or whitespace to place an adjacent comment. Persist edits and comments and export a self-contained revised HTML.
+- **Three academic themes:** keep selectable restrained palettes, local persistence, and presenter mode. Include an optional editable/removable presenter field on the cover.
+- **Readable, balanced design:** deliberate alignment, useful font sizes, restrained relevant imagery, and no accidental large empty regions. Keep source mappings internal by default, while preserving required credits and truthful result wording.
+- **Purposeful interaction:** keep covers and agendas static; preserve approved reveal groups on explanatory slides. Native PPT animations require actual slideshow acceptance in the intended desktop application, not merely XML or static-render checks.
 - **Editable PowerPoint:** rebuild the approved deck with native slide objects and explicit export states for HTML interactions.
 - **Optional speaker script:** create a Chinese or English script synchronized with the final slide order after PPT delivery.
 
@@ -65,7 +66,8 @@ This repository contains skill instructions, reference guides, and validation ut
 - Final PPT authoring uses the **Presentations** skill available in the Codex environment.
 - A separate Word speaker script uses the **Documents** skill.
 - `scripts/preflight_scan.py` requires Python 3 and uses the standard library. It performs read-only triage for suspicious instructions and active content; findings require review.
-- `scripts/validate_interactive_deck.cjs` requires Node.js, Playwright, a generated deck that follows the documented DOM contract, and an existing CDP browser session. Its default endpoint is `http://127.0.0.1:9222`.
+- `scripts/validate_interactive_deck.cjs` requires Node.js, Playwright, a generated deck that follows the documented DOM contract, and an existing CDP browser session. Its default endpoint is `http://127.0.0.1:9222`. This is a helper-script default, not a requirement to use Edge or CDP; the review workflow may use an authorized in-app or other browser surface.
+- `scripts/test_review_runtime.cjs` exercises editing, anchored comments, persistence, and review export through a supplied CDP session. Browser restrictions must be respected; unavailable live tests must be reported as unverified.
 
 ## Repository layout
 
@@ -74,6 +76,7 @@ SKILL.md          Main workflow and content rules
 agents/           Codex skill metadata
 references/       Evidence, design, HTML review, PPT QA, and script guides
 scripts/          Input preflight and interactive-deck validation utilities
+assets/           Reusable full-text editing and anchored-comment runtime
 ```
 
 See [SKILL.md](SKILL.md) for the full workflow and [the interactive presentation guide](references/interactive-presentation-engine.md) for the HTML engine requirements.

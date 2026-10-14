@@ -40,7 +40,7 @@ Preserve all of the following:
 - a slide overview or thumbnail index;
 - stable `data-slide-id` and `data-element-id` attributes; add `data-reveal-step` only for justified progressive explanations and `data-interaction-id` only for actual interactions;
 - slide-level and element-level comments;
-- optional direct-text editing for preliminary wording changes;
+- explicit direct-text editing for every meaningful text run, including body copy, lists, table cells, figure captions, citations, and diagram labels with a semantic editing adapter;
 - local persistence for comments, edits, selected theme, parameter choices, and approved export states;
 - export controls for `review-comments.json`, the current slide specification, and the revised local HTML bundle;
 - a concise instruction panel explaining review, editing, theme selection, interaction, presenter mode, save, and return.
@@ -56,6 +56,12 @@ Offer exactly three named, restrained academic tone presets unless the user requ
 Persist the chosen theme locally and include its ID in exported review comments. When the user sends standalone `confirmed`, lock that theme and the current export states into the approved version.
 
 ## Comment format
+
+Use [the reusable review runtime](review-runtime.md). Default review mode is annotation mode: a click on any slide location, including whitespace and images, creates an anchor and opens a floating editor adjacent to it. Existing numbered pins reopen the corresponding comment. Clamp the editor to the viewport, reposition it on scroll/resize, and keep it outside the scaled slide DOM. Include save, cancel, resolve/reopen, and delete controls. Edit mode and annotation mode are mutually exclusive; navigation, typing, and scientific controls must not accidentally create comments.
+
+Store normalized slide coordinates and a stable element ID where available, so anchors survive scaling and scrolling. Clicking background whitespace must still work. Comments on different slides remain separate. Entering presenter/export mode hides review UI and disables editing and comment creation; the approved content remains complete.
+
+Do not flatten mixed inline markup to `textContent`. Give individual prose runs stable editable spans; preserve emphasis, equations, icons, table structure, and event handlers. Unsupported SVG/Canvas/MathJax labels need a source-data editing adapter or an explicit accessible text inspector. Persist changes on input, not only once on blur. Re-exported HTML must reopen with edits and comments even in a browser without the original local storage.
 
 Each exported comment contains the deck version, theme ID, slide ID, element ID when applicable, interaction/export state when applicable, comment text, proposed replacement when supplied, status, and local timestamp. Keep comments separate from visible presentation content so they cannot leak into PPT output.
 
@@ -75,7 +81,7 @@ Validate at the intended 16:9 viewport and at least one smaller viewing size. In
 
 Allow intersections only for explicitly tagged background typography, texture, highlight, or decorative layers. Never allow an animation overlay, glow, ripple, arrow, or moving signal marker to reduce foreground legibility.
 
-If browser inspection is needed, first reuse the existing Edge instance exposed at `http://127.0.0.1:9222`. If it is unavailable, report the exact failure. Use another browser only when the user authorizes the fallback; do not silently start a different profile.
+Use the browser surface the user requests or an available authorized browser, including the Codex in-app browser. This skill does not require Edge or a specific CDP port. Honor any explicit session preference; do not silently replace a user session or launch another profile. The bundled CDP test scripts default to `http://127.0.0.1:9222`, but this is a helper default, not a workflow requirement. If a tool blocks local-file access, report the limitation and obtain the approved state through a permitted route or user export; do not bypass the restriction. Keep untested UI behavior distinct from source inspection.
 
 ## Approval gate
 

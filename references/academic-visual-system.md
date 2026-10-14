@@ -22,7 +22,7 @@ Establish clear layers:
 - middle ground: restrained outlines, transparent ellipses, fine rules, or a subtle focus field;
 - foreground: the decisive figure, chart, equation, image, or information group.
 
-Use controlled asymmetry rather than a generic centered template. The visual center may sit rightward or lower, while an edge can carry a calm vertical information strip. Mild rotation, stacking, offset, or suspension can add physical depth, but academic evidence must remain aligned, comparable, and easy to read.
+Choose centered or asymmetric composition according to the content. Center a compact cover, single figure, or short conclusion within the usable area when that gives the clearest hierarchy. A two-column evidence page may be asymmetric if the columns balance visually. Do not make non-centering a design requirement. Academic evidence must remain aligned, comparable, and easy to read.
 
 Use shadow only to express shallow paper depth or separation. Avoid heavy drop shadows, glows, bevels, and effects that render inconsistently. Blur belongs to background atmosphere, never to essential content.
 
@@ -31,6 +31,18 @@ Use shadow only to express shallow paper depth or separation. Avoid heavy drop s
 Balance compressed evidence with deliberate breathing room. Dense regions should feel like layered paper or organized data, not a dashboard of repeated cards. Sparse regions should support attention, not signal missing substance. Prefer one dominant visual and a small number of supporting annotations per slide.
 
 Academic decks are summaries. Show enough method to judge validity and enough results to support the conclusion, but do not turn the deck into a laboratory manual. Conversely, do not imitate an empty strategy presentation with slogans and oversized whitespace. Every slide needs a clear informational job.
+
+## Layout acceptance and image selection
+
+Layout reasonableness and readability are strict deliverable requirements. Fix poor hierarchy, awkward placement, accidental large empty regions, tiny type, and unbalanced image/text scale even if the slide passes numerical bounds checks. Visual style, richer illustration, and motion cannot excuse an unreadable or ill-composed page.
+
+Define a 16:9 usable content area with consistent outer margins, title band, and footer. Center the content group within that area, not blindly within the entire screen or around a sidebar. Use grid/flex alignment with shared baselines and explicit gaps rather than unrelated absolute offsets. Keep slide-scale coordinates separate from viewport coordinates used by review popovers.
+
+At a 1280 × 720 authoring canvas, start near 40–52 px for titles, 24–32 px for body copy, and 16–20 px for captions; adapt to the font and content. For PPT, start near 28–36 pt for titles and 18–24 pt for body. These are starting ranges, not conversion formulas. Measure rendered line boxes and inspect at presentation size. Wrap or restructure before shrinking type. Fit short text to a narrower measure and enlarge the main visual rather than leaving a small block in a large empty column.
+
+Inspect every rendered slide for: content-group horizontal and vertical placement; balance of visual mass; title/body hierarchy; line length; alignment; main-visual scale; gaps that imply missing content; and whitespace created by an unused grid column. Sparse covers and section dividers may be intentional, but ordinary evidence pages need a legible main visual or a well-scaled text composition. Automated bounds checks cannot decide whether whitespace is appropriate; render and inspect contact sheets and individual pages.
+
+Use images to explain an object, setting, mechanism, comparison, or evidence. Consider supplied figures, topic-specific magazine and journal illustrations, editorial photographs, professional publications, archives, and generated conceptual imagery according to the actual subject and audience. A larger relevant image, thoughtful crop, or image-led composition can be appropriate; there is no required illustration quota. Use image generation or image search when it helps, following the corresponding tool/skill guidance. Preserve source context, source URL or reference, rights information, and adaptations internally. Add a caption only when it explains the image, not as a formulaic data declaration. Required visible credits still apply; choose a different asset if its conditions conflict with the desired layout. Never present a generated photograph or diagram as a measured result. Do not invent chart data or add unrelated pictures to fill whitespace. Store selected assets locally, maintain their aspect ratio, and make sure they do not displace needed labels or evidence.
 
 ## Visual integrity
 

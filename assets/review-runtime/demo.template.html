@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>学术演示审阅组件验证</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e8edf1;color:#172e43;font-family:Arial,"Microsoft YaHei",sans-serif}header{padding:18px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}header p{margin:0}header button{padding:8px 12px}#deck{padding:12px 24px 110px}.interactive-slide{aspect-ratio:16/9;position:relative;background:#fcfbf7;width:min(100%,1280px);margin:auto;padding:4%;display:flex;flex-direction:column;gap:22px}.interactive-slide[hidden]{display:none}h1{font-size:clamp(24px,3.5vw,44px);margin:0;line-height:1.25}.content{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:5%;flex:1;min-height:0}p,li,td,th{font-size:clamp(15px,2vw,25px);line-height:1.5}p{margin:0 0 16px}li{margin-bottom:8px}ul{padding-left:24px}figure{margin:0}figure svg{display:block;width:100%;height:auto}figcaption{font-size:clamp(12px,1.4vw,18px);margin-top:12px;line-height:1.5}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #ccd5db;padding:8px;text-align:left}footer{font-size:14px;color:#587083}.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:1;gap:24px}.center p{max-width:780px}.ar-editor textarea{font-size:15px}html[data-mode=presenter] header,html[data-mode=export] header{display:none}@media(max-width:800px){.interactive-slide{gap:12px;padding:3%}.content{gap:3%}p,li,td,th{font-size:15px;line-height:1.4}ul{margin:8px 0}td,th{padding:4px}figcaption{font-size:12px}footer{font-size:11px}}
+/* REVIEW_CSS */
+</style></head><body>
+<header><p>验证示例 · 非研究结果：默认点击页面添加就地批注；切换“编辑全文”后修改文字。</p><button id="prev">上一页</button><button id="next">下一页</button><button id="present">演讲模式</button><button id="back">返回审阅</button></header>
+<main id="deck">
+<section class="interactive-slide" data-slide-id="demo-evidence"><h1><span data-edit-id="title">证据与解释，应当在同一页形成完整论证</span></h1>
+<div class="content"><div><p><span data-edit-id="body">正文可以直接编辑，并在重新打开后保留。</span> <strong><span data-edit-id="emphasis">强调文字</span></strong><span data-edit-id="body-tail">保留独立的语义结构。</span></p>
+<ul><li><span data-edit-id="list">点击正文、列表或表格文字进行修改。</span></li><li><span data-edit-id="list2">切换到批注后，图片和空白位置也能添加批注。</span></li></ul>
+<table><thead><tr><th><span data-edit-id="table-header">检查项</span></th><th><span data-edit-id="table-header2">预期行为</span></th></tr></thead><tbody><tr><td><span data-edit-id="cell">正文编辑</span></td><td><span data-edit-id="cell2">本地保存</span></td></tr></tbody></table></div>
+<figure data-element-id="figure"><svg viewBox="0 0 480 300" role="img" aria-label="概念示意：材料、解释与判断"><rect x="8" y="8" width="464" height="284" rx="12" fill="#e5ecf0"/><path d="M85 150H395" stroke="#172e43" stroke-width="5"/><circle cx="85" cy="150" r="45" fill="#547b92"/><circle cx="240" cy="150" r="45" fill="#8aa6b4"/><circle cx="395" cy="150" r="45" fill="#ac795c"/></svg><figcaption><span data-edit-id="caption">概念示意，不代表实测数据。批注会锚定到图片或点击位置。</span></figcaption></figure></div><footer><span data-edit-id="citation">示例页 1 / 2 · 用于编辑、布局及批注交互验证。</span></footer></section>
+<section class="interactive-slide" data-slide-id="demo-center" hidden><h1><span data-edit-id="title2">短结论采用居中构图</span></h1><div class="center"><p><span data-edit-id="center-text">内容组在可用区域内水平和垂直居中，避免小段文字停在角落。</span></p><p><span data-edit-id="center-note">这里的留白服务于结论的阅读，而非来自未使用的网格列。</span></p></div><footer><span data-edit-id="citation2">示例页 2 / 2 · 不含研究结论。</span></footer></section>
+</main><script>
+/* REVIEW_JS */
+</script><script>
+const review=AcademicReview.mount({deckId:'academic-review-integration-demo',version:'1',root:document.querySelector('#deck')});
+let pageIndex=0;const pages=[...document.querySelectorAll('.interactive-slide')];
+function goToSlide(i){pageIndex=(i+pages.length)%pages.length;pages.forEach((p,n)=>p.hidden=n!==pageIndex);review.refresh();}
+function setMode(mode){document.documentElement.dataset.mode=mode;review.setPresentationMode(mode);}
+document.querySelector('#prev').onclick=()=>goToSlide(pageIndex-1);document.querySelector('#next').onclick=()=>goToSlide(pageIndex+1);document.querySelector('#present').onclick=()=>setMode('presenter');document.querySelector('#back').onclick=()=>setMode('review');
+document.addEventListener('keydown',e=>{if(e.target.isContentEditable||e.target.closest('[data-ar-ui]'))return;if(e.key==='Escape')setMode('review');if(e.key==='PageDown')goToSlide(pageIndex+1);if(e.key==='PageUp')goToSlide(pageIndex-1);});
+window.presentationEngine={goToSlide,setMode};window.review=review;setMode('review');
+</script></body></html>
